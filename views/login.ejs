@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spider Login</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0a0a0f, #000);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 🎬 CINEMATIC LIGHT */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(229,9,20,0.2), transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(229,9,20,0.1), transparent 40%);
+      z-index: 0;
+    }
+
+    /* 🎬 VIGNETTE */
+    body::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.9));
+      z-index: 1;
+    }
+
+    /* 🕸️ WEB OVERLAY */
+    .web {
+      position: absolute;
+      inset: 0;
+      opacity: 0.08;
+      z-index: 1;
+    }
+
+    /* 🕷️ BIG BACKGROUND TEXT */
+    .bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 160px;
+      font-weight: 900;
+      letter-spacing: 20px;
+      color: rgba(229,9,20,0.06);
+      z-index: 1;
+      user-select: none;
+    }
+
+    /* 🧊 GLASS CARD */
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.8),
+        inset 0 0 40px rgba(229,9,20,0.05);
+    }
+
+    /* 🕷️ SPIDER SWING */
+    .spider {
+      animation: swing 3s infinite ease-in-out alternate;
+    }
+
+    @keyframes swing {
+      from { transform: rotate(-6deg); }
+      to { transform: rotate(6deg); }
+    }
+
+    /* INPUT */
+    .input {
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: 0.3s;
+    }
+
+    .input:focus {
+      border-color: #e50914;
+      box-shadow: 0 0 10px rgba(229,9,20,0.4);
+      outline: none;
+    }
+
+    /* BUTTON */
+    .btn {
+      background: linear-gradient(135deg, #e50914, #8b0000);
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(229,9,20,0.6);
+    }
+  </style>
+</head>
+
+<body class="flex items-center justify-center h-screen text-white">
+
+  <!-- 🕸️ SVG WEB -->
+  <svg class="web" viewBox="0 0 800 800">
+    <circle cx="400" cy="400" r="300" stroke="white" fill="none"/>
+    <circle cx="400" cy="400" r="200" stroke="white" fill="none"/>
+    <circle cx="400" cy="400" r="100" stroke="white" fill="none"/>
+    <line x1="400" y1="0" x2="400" y2="800" stroke="white"/>
+    <line x1="0" y1="400" x2="800" y2="400" stroke="white"/>
+  </svg>
+
+  <!-- 🕷️ BRAND -->
+  <div class="bg-text">SPIDER</div>
+
+  <!-- 🎯 LOGIN CARD -->
+  <div class="glass p-10 rounded-2xl w-96 text-center relative z-10">
+
+    <div class="text-4xl spider mb-2">🕷️</div>
+
+    <h1 class="text-3xl font-bold text-red-500">
+      SPIDER LOGIN
+    </h1>
+
+    <p class="text-gray-400 text-sm mb-6">
+      Enter the Spider-Verse
+    </p>
+
+    <form action="/user/login" method="POST">
+
+      <input type="text" name="username"
+        class="input w-full p-3 mb-3 rounded text-white"
+        placeholder="Username">
+
+      <input type="password" name="password"
+        class="input w-full p-3 mb-5 rounded text-white"
+        placeholder="Password">
+
+      <button class="btn w-full p-3 rounded font-semibold">
+        ENTER SYSTEM 🕸️
+      </button>
+
+    </form>
+
+  </div>
+
+</body>
+</html>

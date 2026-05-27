@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Success</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0a0a0f, #000);
+      color: white;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .btn {
+      padding: 6px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body class="p-6">
+
+<div class="glass p-6 rounded-xl text-center">
+
+  <h1 class="text-green-400 text-xl mb-3">✅ Upload Successful</h1>
+
+  <% if (imageUrl) { %>
+    <img src="<%= imageUrl %>" class="w-60 mx-auto rounded mb-3">
+  <% } %>
+
+  <!-- TOGGLE BUTTON -->
+  <button onclick="toggleGallery()" class="bg-red-600 px-4 py-2 rounded">
+    Show / Hide Images 🕷️
+  </button>
+
+</div>
+
+<!-- GALLERY -->
+<div id="gallery" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+
+<% if (images && images.length > 0) { %>
+
+  <% images.forEach(img => { %>
+
+    <div class="glass p-2 rounded">
+
+      <img src="<%= img.secure_url %>" class="h-32 w-full object-cover rounded mb-2">
+
+      <div class="flex justify-between text-xs">
+
+        <!-- Preview -->
+        <a href="<%= img.secure_url %>" target="_blank">👁</a>
+
+        <!-- Download (FIXED) -->
+        <a href="<%= img.secure_url %>" target="_blank" download>
+          ⬇
+        </a>
+
+        <!-- Delete (FIXED METHOD TYPE) -->
+        <form action="/delete-image" method="POST" onsubmit="return confirm('Delete image?')">
+          <input type="hidden" name="publicId" value="<%= img.public_id %>">
+          <button type="submit">❌</button>
+        </form>
+
+      </div>
+
+    </div>
+
+  <% }) %>
+
+<% } else { %>
+
+  <p class="text-gray-400 col-span-4 text-center">
+    No images found
+  </p>
+
+<% } %>
+
+</div>
+
+<script>
+function toggleGallery() {
+  document.getElementById("gallery").classList.toggle("hidden");
+}
+</script>
+
+</body>
+</html>
